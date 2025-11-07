@@ -57,9 +57,11 @@ public class Enemy : MonoBehaviour
     // 적 회전
     void Turn()
     {
+        int tryCount = 0;
         bool found = false;
 
-        while (!found)
+        // 갈려는 칸이 비어있는지 확인
+        while (!found && tryCount < 10)
         {
             direction = (Direction)Random.Range(0, 4);
             Vector3 nextPos = transform.position;
@@ -87,16 +89,42 @@ public class Enemy : MonoBehaviour
                     break;
             }
 
+            // 갈려는 칸이 맵 밖에 있는 경우 확인
             if (nextPos.x > 3.5f || nextPos.x < -3.5f || nextPos.y > 3.5f || nextPos.y < -3.5f)
             {
-                targetposition = transform.position;
+                tryCount++;
+                continue;
             }
-            else
+
+            // 갈려는 칸에 적이 있는 경우 확인 (현재 작동 안함)
+            bool isOccupied = false;
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+            foreach (GameObject e in enemies)
+            {
+                if (e == null || e == this.gameObject) continue;
+
+                if (Vector3.Distance(e.transform.position, nextPos) < 0.1f)
+                {
+                    isOccupied = true;
+                    break;
+                }
+            }
+
+            if (!isOccupied)
             {
                 targetposition = nextPos;
                 found = true;
             }
+            else
+            {
+                tryCount++;
+            }
 
+            if (!found)
+            {
+                targetposition = transform.position;
+            }
         }
     }
 }

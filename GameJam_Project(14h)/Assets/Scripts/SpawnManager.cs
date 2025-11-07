@@ -6,6 +6,7 @@ public class SpawnManager : MonoBehaviour
     public GameManager gameManager;
 
     public GameObject enemy;
+    public GameObject bigenemy;
 
     [SerializeField]
     Vector3[] spawnpoint;
@@ -33,7 +34,12 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnEnemy()
     {
-        if (turn % 3 == 0 && !isSpawn)
+        if (turn % 30 == 0 && !isSpawn)
+        {
+            Instantiate(bigenemy, spawnpoint[Random.Range(0, spawnpoint.Length)], Quaternion.Euler(Vector3.up));
+            isSpawn = true;
+        }
+        else if (turn % 3 == 0 && !isSpawn)
         {
             Instantiate(enemy, spawnpoint[Random.Range(0, spawnpoint.Length)], Quaternion.Euler(Vector3.up));
             isSpawn = true;
