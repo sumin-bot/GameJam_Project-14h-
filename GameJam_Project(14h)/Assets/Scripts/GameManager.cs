@@ -3,22 +3,14 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     #region singleton
-    private static GameManager instance;
-    public static GameManager Instance
-    {
-        get
-        {
-            if (instance == null) instance = new GameManager();
-            return instance;
-        }
-    }
+    public static GameManager Instance;
 
     private void Awake()
     {
 
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -101,6 +93,7 @@ public class GameManager : MonoBehaviour
     {
         if (player.hp <= 0)
         {
+            isTurn = false;
             isGame = false;
         }
     }

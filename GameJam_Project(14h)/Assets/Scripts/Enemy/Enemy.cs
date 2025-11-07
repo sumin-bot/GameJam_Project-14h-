@@ -1,6 +1,4 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour
 {
@@ -63,7 +61,7 @@ public class Enemy : MonoBehaviour
         bool found = false;
 
         // 갈려는 칸이 비어있는지 확인
-        while (!found && tryCount < 20)
+        while (!found && tryCount < 10)
         {
             direction = (Direction)Random.Range(0, 4);
             Vector3 nextPos = transform.position;
@@ -99,6 +97,7 @@ public class Enemy : MonoBehaviour
             else
             {
                 targetposition = nextPos;
+                found = true;
             }  
         }
     }

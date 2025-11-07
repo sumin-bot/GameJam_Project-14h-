@@ -53,6 +53,7 @@ public class Enemy3 : Enemy
             else
             {
                 targetposition = nextPos;
+                found = true;
             }
         }
     }

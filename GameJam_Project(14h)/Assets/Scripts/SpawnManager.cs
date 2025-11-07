@@ -4,22 +4,14 @@ using System.Collections;
 public class SpawnManager : MonoBehaviour
 {
     #region singleton
-    private static SpawnManager instance;
-    public static SpawnManager Instance
-    {
-        get
-        {
-            if (instance == null) instance = new SpawnManager();
-            return instance;
-        }
-    }
+    public static SpawnManager Instance;
 
     private void Awake()
     {
 
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -43,20 +35,17 @@ public class SpawnManager : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.isGame)
+        if (GameManager.Instance.isTurn && flag)
         {
-            if (GameManager.Instance.isTurn && flag)
-            {
-                turn++;
-                SpawnEnemy();
-                flag = false;
-                isSpawn = false;
-            }
+            turn++;
+            SpawnEnemy();
+            flag = false;
+            isSpawn = false;
+        }
 
-            if (!GameManager.Instance.isTurn)
-            {
-                flag = true;
-            }
+        if (!GameManager.Instance.isTurn)
+        {
+            flag = true;
         }
     }
 
@@ -67,12 +56,12 @@ public class SpawnManager : MonoBehaviour
             Instantiate(enemy3, spawnpoint[Random.Range(1, spawnpoint.Length - 1)] + Vector3.up, Quaternion.Euler(Vector3.up));
             isSpawn = true;
         }
-        else if (turn % 9 == 0 && !isSpawn)
+        else if (turn % 10 == 0 && !isSpawn)
         {
             Instantiate(enemy2, spawnpoint[Random.Range(0, spawnpoint.Length)], Quaternion.Euler(Vector3.up));
             isSpawn = true;
         }
-        else if (turn % 3 == 0 && !isSpawn)
+        else if (turn % 5 == 0 && !isSpawn)
         {
             Instantiate(enemy, spawnpoint[Random.Range(0, spawnpoint.Length)], Quaternion.Euler(Vector3.up));
             isSpawn = true;
