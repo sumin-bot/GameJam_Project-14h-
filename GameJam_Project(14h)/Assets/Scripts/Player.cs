@@ -3,8 +3,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public static bool isPlayerMove = false;
-    
-    
+
+
+    [SerializeField] public int hp;
+
     public float PosX; // -3.5 ~ 3.5
     public float PosY; // -3.5 ~ 3.5
 
@@ -49,5 +51,15 @@ public class Player : MonoBehaviour
     private void Move()
     {
         transform.position = Vector3.Lerp(transform.position, targetposition, Time.deltaTime * 10f);
+    }
+
+    // 플레이어 HP 감소
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            hp--;
+            Destroy(collision.gameObject);
+        }
     }
 }
