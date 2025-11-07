@@ -1,64 +1,17 @@
 using UnityEngine;
-using System.Collections;
 
-public class Enemy : MonoBehaviour
+public class Enemy3 : Enemy
 {
-    enum Direction {up, down, right, left}
-
-    Direction direction;
-
-    bool isEnemyMove = false;
-
-    float PosX; // -3.5 ~ 3.5
-    float PosY; // -3.5 ~ 3.5
-
-    float cooltime_timer = 0;
-
-    Vector3 targetposition;
-
-    void Awake()
+    override protected void Awake()
     {
 
-        PosX = transform.position.x;
-        PosY = transform.position.y;
-        direction = Direction.up;
+        base.Awake();
 
         targetposition = transform.position + transform.up;
     }
 
-    void Update()
-    {
-        if (GameManager.Instance.isGame)
-        {
-            if (isEnemyMove)
-            {
-                Move();
-
-                cooltime_timer += Time.deltaTime;
-
-                if (cooltime_timer >= 0.75f)
-                {
-                    isEnemyMove = false;
-                    transform.position = targetposition;
-                    Turn();
-                    cooltime_timer = 0;
-                }
-            }
-            else
-            {
-                if (!GameManager.Instance.isTurn) isEnemyMove = true;
-            }
-        }
-    }
-
-    // 적 움직임
-    void Move()
-    {
-        transform.position = Vector3.Lerp(transform.position, targetposition, Time.deltaTime * 10f);
-    }
-
     // 적 회전
-    void Turn()
+    override protected void Turn()
     {
         int tryCount = 0;
         bool found = false;
@@ -93,7 +46,7 @@ public class Enemy : MonoBehaviour
             }
 
             // 갈려는 칸이 맵 밖에 있는 경우 확인
-            if (nextPos.x > 3.5f || nextPos.x < -3.5f || nextPos.y > 3.5f || nextPos.y < -3.5f)
+            if (nextPos.x > 2.5f || nextPos.x < -2.5f || nextPos.y > 2.5f || nextPos.y < -2.5f)
             {
                 tryCount++;
                 continue;

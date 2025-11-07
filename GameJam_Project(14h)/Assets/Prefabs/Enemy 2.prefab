@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 9199575774033878856}
   - component: {fileID: 1270823359212967921}
   - component: {fileID: 1588738012178380571}
-  - component: {fileID: 9137818047354456813}
+  - component: {fileID: 7336188643030445525}
   m_Layer: 0
-  m_Name: Big Enemy
+  m_Name: Enemy 2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.5, y: -1.5, z: 0}
-  m_LocalScale: {x: 2.25, y: 2.25, z: 2.25}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 8596640243658272642, guid: 9c3d106f87eada9429c029b80c86688e, type: 3}
+  m_Sprite: {fileID: 7806976050856398930, guid: 680906706cd0ea64ca69137ea56f4eef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -163,7 +163,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &9137818047354456813
+--- !u!114 &7336188643030445525
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,6 +172,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7044129434665628219}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ea3091478f519e4096c5161fcb19ed4, type: 3}
+  m_Script: {fileID: 11500000, guid: 044981aa458feb34cb5b311f80679e10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

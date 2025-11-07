@@ -30,7 +30,8 @@ public class SpawnManager : MonoBehaviour
     #endregion
 
     public GameObject enemy;
-    public GameObject bigenemy;
+    public GameObject enemy2;
+    public GameObject enemy3;
 
     [SerializeField]
     Vector3[] spawnpoint;
@@ -63,7 +64,12 @@ public class SpawnManager : MonoBehaviour
     {
         if (turn % 30 == 0 && !isSpawn)
         {
-            Instantiate(bigenemy, spawnpoint[Random.Range(0, spawnpoint.Length)], Quaternion.Euler(Vector3.up));
+            Instantiate(enemy3, spawnpoint[Random.Range(1, spawnpoint.Length - 1)] + Vector3.up, Quaternion.Euler(Vector3.up));
+            isSpawn = true;
+        }
+        else if (turn % 9 == 0 && !isSpawn)
+        {
+            Instantiate(enemy2, spawnpoint[Random.Range(0, spawnpoint.Length)], Quaternion.Euler(Vector3.up));
             isSpawn = true;
         }
         else if (turn % 3 == 0 && !isSpawn)
