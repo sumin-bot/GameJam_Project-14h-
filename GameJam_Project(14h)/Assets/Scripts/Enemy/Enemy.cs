@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
 
         PosX = transform.position.x;
         PosY = transform.position.y;
-        direction = Direction.up;
+        Turn();
     }
 
     protected void Update()
