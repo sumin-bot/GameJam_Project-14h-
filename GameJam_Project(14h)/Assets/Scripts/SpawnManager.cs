@@ -3,7 +3,31 @@ using System.Collections;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameManager gameManager;
+    #region singleton
+    private static SpawnManager instance;
+    public static SpawnManager Instance
+    {
+        get
+        {
+            if (instance == null) instance = new SpawnManager();
+            return instance;
+        }
+    }
+
+    private void Awake()
+    {
+
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    #endregion
 
     public GameObject enemy;
     public GameObject bigenemy;
@@ -18,7 +42,7 @@ public class SpawnManager : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.isTurn && flag)
+        if (GameManager.Instance.isTurn && flag)
         {
             turn++;
             SpawnEnemy();
@@ -26,7 +50,7 @@ public class SpawnManager : MonoBehaviour
             isSpawn = false;
         }
 
-        if (!GameManager.isTurn)
+        if (!GameManager.Instance.isTurn)
         {
             flag = true;
         }

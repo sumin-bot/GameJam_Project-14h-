@@ -4,13 +4,12 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public Player player;
-    public SpawnManager spawnManager;
     public Text playerHPTxt;
     public Text turnTxt;
 
     void Update()
     {
         playerHPTxt.text = "HP :" + player.hp;
-        turnTxt.text = "turn :" + spawnManager.turn;
+        turnTxt.text = "turn :" + SpawnManager.Instance.turn;
     }
 }

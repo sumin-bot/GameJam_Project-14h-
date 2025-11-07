@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            if (!GameManager.isTurn) isEnemyMove = true;
+            if (!GameManager.Instance.isTurn) isEnemyMove = true;
         }
     }
 

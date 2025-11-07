@@ -2,6 +2,33 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    #region singleton
+    private static GameManager instance;
+    public static GameManager Instance
+    {
+        get
+        {
+            if (instance == null) instance = new GameManager();
+            return instance;
+        }
+    }
+
+    private void Awake()
+    {
+
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    #endregion
+
+
     public Player player;
 
     float horizontal;
@@ -9,11 +36,12 @@ public class GameManager : MonoBehaviour
 
     float cooltime_timer = 0;
 
-    public static bool isTurn = true;
+    public bool isTurn = true;
 
     void Update()
     {
         MoveTrigger();
+        CheckDeath();
     }
 
     // 플레이어 움직임 조작
@@ -61,6 +89,15 @@ public class GameManager : MonoBehaviour
                 isTurn = true;
                 cooltime_timer = 0;
             }
+        }
+    }
+
+    // 플레이어 죽음 확인
+    void CheckDeath()
+    {
+        if (player.hp <= 0)
+        {
+
         }
     }
 }
