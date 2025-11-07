@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
 
         cooltime_timer += Time.deltaTime;
 
-        if (cooltime_timer >= 0.5f)
+        if (cooltime_timer >= 0.75f)
         {
             GameManager.isTurn = true;
             cooltime_timer = 0;

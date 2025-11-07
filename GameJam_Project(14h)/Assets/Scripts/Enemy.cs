@@ -9,12 +9,20 @@ public class Enemy : MonoBehaviour
 
     bool isEnemyMove = false;
 
+    float PosX; // -3.5 ~ 3.5
+    float PosY; // -3.5 ~ 3.5
+
     float cooltime_timer = 0;
 
     Vector3 targetposition;
 
     void Awake()
     {
+
+        PosX = transform.position.x;
+        PosY = transform.position.y;
+        direction = Direction.up;
+
         targetposition = transform.position + transform.up;
     }
 
@@ -26,9 +34,11 @@ public class Enemy : MonoBehaviour
 
             cooltime_timer += Time.deltaTime;
 
-            if (cooltime_timer >= 0.5f)
+            if (cooltime_timer >= 0.75f)
             {
                 isEnemyMove = false;
+                transform.position = targetposition;
+                PosCheck();
                 Turn();
                 cooltime_timer = 0;
             }
@@ -45,6 +55,16 @@ public class Enemy : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, targetposition, Time.deltaTime * 10f);
     }
 
+    // Àû À§Ä¡ È®ÀÎ (¸Ê ÀÌÅ» ½Ã ÆÄ±« (¸Ê ÀÌÅ» ¹æÁö Æ÷±â..))
+    void PosCheck()
+    {
+        PosX = transform.position.x;
+        PosY = transform.position.y;
+
+        if (PosX > 3.5f || PosX < -3.5f || PosY > 3.5f || PosY < -3.5f)
+            Destroy(gameObject);
+    }
+
     // Àû È¸Àü
     void Turn()
     {
@@ -54,13 +74,16 @@ public class Enemy : MonoBehaviour
         {
             case Direction.up:
                 transform.rotation = Quaternion.Euler(0, 0, 0);
-                break;
+                    break;
+
             case Direction.down:
                 transform.rotation = Quaternion.Euler(0, 0, 180);
                 break;
+
             case Direction.right:
                 transform.rotation = Quaternion.Euler(0, 0, 270);
                 break;
+
             case Direction.left:
                 transform.rotation = Quaternion.Euler(0, 0, 90);
                 break;
