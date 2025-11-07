@@ -11,37 +11,33 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        PosX = this.transform.position.x;
-        PosY = this.transform.position.y;
+        PosX = transform.position.x;
+        PosY = transform.position.y;
     }
 
     void Update()
     {
-        Move();
+        if (!GameManager.isTurn) Move();
     }
 
+    // 플레이어 움직임 시작 (targetposition 초기화)
     public void MoveStart(Vector3 direction)
     {
-        GameManager.isTurn = false;
-        targetposition = this.transform.position + direction;
+        targetposition = transform.position + direction;
     }
 
+    // 플레이어 움직임
     private void Move()
     {
-        if (!GameManager.isTurn)
+        transform.position = Vector3.Lerp(transform.position, targetposition, Time.deltaTime * 10f);
+
+        cooltime_timer += Time.deltaTime;
+
+        if (cooltime_timer >= 0.5f)
         {
-
-            this.transform.position = Vector3.Lerp(this.transform.position, targetposition, Time.deltaTime * 10f);
-
-            cooltime_timer += Time.deltaTime;
-
-            if (cooltime_timer >= 0.5f)
-            {
-                GameManager.isTurn = true;
-                cooltime_timer = 0;
-                this.transform.position = new Vector3(PosX, PosY, 0);
-            }
+            GameManager.isTurn = true;
+            cooltime_timer = 0;
+            transform.position = new Vector3(PosX, PosY, 0);
         }
-
     }
 }

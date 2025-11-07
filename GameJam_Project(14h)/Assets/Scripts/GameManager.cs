@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
         MoveTrigger();
     }
 
+    // 플레이어 움직임 조작
     void MoveTrigger()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
@@ -47,10 +48,5 @@ public class GameManager : MonoBehaviour
                 isTurn = false;
             }
         }
-        else
-        {
-
-        }
-
     }
 }
