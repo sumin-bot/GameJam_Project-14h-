@@ -17,7 +17,7 @@ public class Enemy3 : Enemy
         bool found = false;
 
         // 갈려는 칸이 비어있는지 확인
-        while (!found && tryCount < 20)
+        while (!found && tryCount < 10)
         {
             direction = (Direction)Random.Range(0, 4);
             Vector3 nextPos = transform.position;
@@ -46,7 +46,10 @@ public class Enemy3 : Enemy
             }
 
             // 갈려는 칸이 맵 밖에 있는 경우 확인
-            if (nextPos.x > 2.5f || nextPos.x < -2.5f || nextPos.y > 2.5f || nextPos.y < -2.5f)
+            bool isOutsideBounds = nextPos.x > 2.5f || nextPos.x < -2.5f || nextPos.y > 2.5f || nextPos.y < -2.5f;
+
+
+            if (isOutsideBounds || GameManager.Instance.IsPositionOccupied(nextPos))
             {
                 tryCount++;
             }
@@ -54,6 +57,7 @@ public class Enemy3 : Enemy
             {
                 targetposition = nextPos;
                 found = true;
+                GameManager.Instance.RegisterPosition(nextPos);
             }
         }
     }

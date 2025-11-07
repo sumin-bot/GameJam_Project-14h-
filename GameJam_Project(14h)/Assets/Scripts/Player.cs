@@ -34,7 +34,9 @@ public class Player : MonoBehaviour
                 {
                     isPlayerMove = false;
                     cooltime_timer = 0;
-                    transform.position = new Vector3(PosX, PosY, 0);
+                    Vector3 newPos = new Vector3(PosX, PosY, 0);
+
+                    transform.position = newPos;
                 }
             }
             else

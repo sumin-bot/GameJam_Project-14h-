@@ -61,7 +61,7 @@ public class SpawnManager : MonoBehaviour
             Instantiate(enemy2, spawnpoint[Random.Range(0, spawnpoint.Length)], Quaternion.Euler(Vector3.up));
             isSpawn = true;
         }
-        else if (turn % 5 == 0 && !isSpawn)
+        else if ((turn % 5 == 0 || turn == 1) && !isSpawn)
         {
             Instantiate(enemy, spawnpoint[Random.Range(0, spawnpoint.Length)], Quaternion.Euler(Vector3.up));
             isSpawn = true;

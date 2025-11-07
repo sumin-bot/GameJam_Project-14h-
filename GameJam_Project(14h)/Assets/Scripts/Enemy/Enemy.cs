@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour
                 if (cooltime_timer >= 0.75f)
                 {
                     isEnemyMove = false;
+
                     transform.position = targetposition;
                     Turn();
                     cooltime_timer = 0;
@@ -43,7 +44,10 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                if (!GameManager.Instance.isTurn) isEnemyMove = true;
+                if (!GameManager.Instance.isTurn)
+                {
+                    isEnemyMove = true;
+                }
             }
         }
     }
@@ -90,7 +94,10 @@ public class Enemy : MonoBehaviour
             }
 
             // 갈려는 칸이 맵 밖에 있는 경우 확인
-            if (nextPos.x > 3.5f || nextPos.x < -3.5f || nextPos.y > 3.5f || nextPos.y < -3.5f)
+            bool isOutsideBounds = nextPos.x > 3.5f || nextPos.x < -3.5f || nextPos.y > 3.5f || nextPos.y < -3.5f;
+
+            
+            if (isOutsideBounds || GameManager.Instance.IsPositionOccupied(nextPos))
             {
                 tryCount++;
             }
@@ -98,6 +105,7 @@ public class Enemy : MonoBehaviour
             {
                 targetposition = nextPos;
                 found = true;
+                GameManager.Instance.RegisterPosition(nextPos);
             }  
         }
     }

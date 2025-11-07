@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,25 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
+
+    public List<Vector3> nextOccupiedPositions = new List<Vector3>();
+
+    public bool IsPositionOccupied(Vector3 pos)
+    {
+        pos.z = 0;
+        return nextOccupiedPositions.Contains(pos);
+    }
+
+    public void RegisterPosition(Vector3 pos)
+    {
+        pos.z = 0;
+        nextOccupiedPositions.Add(pos);
+    }
+
+    public void ClearPosition()
+    {
+        nextOccupiedPositions.Clear();
+    }
 
 
     public Player player;
@@ -83,6 +103,8 @@ public class GameManager : MonoBehaviour
             if (cooltime_timer >= 0.75f)
             {
                 isTurn = true;
+
+                ClearPosition();
                 cooltime_timer = 0;
             }
         }
