@@ -65,18 +65,18 @@ public class SpawnManager : MonoBehaviour
             isSpawn = true;
             spawn1++;
         }
-        else if (turn % 15 == 0 && !isSpawn && spawn4 < 3)
+        else if (turn % 15 == 0 && !isSpawn && spawn4 < 5)
         {
             Instantiate(enemy4, spawnPosition, Quaternion.Euler(Vector3.up));
             isSpawn = true;
             spawn4++;
         }
-        else if (turn % 10 == 0 && !isSpawn && spawn2 < 5)
+        else if (turn % 10 == 0 && !isSpawn && spawn2 < 7)
         {
             Instantiate(enemy2, spawnPosition, Quaternion.Euler(Vector3.up));
             isSpawn = true;
         }
-        else if ((turn % 5 == 0 || turn == 1) && !isSpawn && spawn1 < 7)
+        else if ((turn % 3 == 0 || turn == 1) && !isSpawn && spawn1 < 10)
         {
             Instantiate(enemy, spawnPosition, Quaternion.Euler(Vector3.up));
             isSpawn = true;
