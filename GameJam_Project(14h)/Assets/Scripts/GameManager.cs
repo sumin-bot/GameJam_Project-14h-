@@ -120,6 +120,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public Vector3 FindRandomPosition(int maxTry = 30)
+    {
+        for (int i = 0; i < maxTry; i++)
+        {
+            float randomX = -2.5f + Random.Range(0, 6) * 1.0f;
+            float randomY = -2.5f + Random.Range(0, 6) * 1.0f;
+
+            Vector3 spawnPos = new Vector3(randomX, randomY, 0);
+
+            if (!IsPositionOccupied(spawnPos) && (spawnPos.x != player.PosX && spawnPos.y != player.PosY)) return spawnPos;
+        }
+
+        return new Vector3(2.5f, -2.5f, 0);
+    }
+
     // ÃÊ±âÈ­
     public void Initialize()
     {

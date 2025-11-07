@@ -8,18 +8,12 @@ public class Enemy : MonoBehaviour
 
     protected bool isEnemyMove = false;
 
-    protected float PosX; // -3.5 ~ 3.5
-    protected float PosY; // -3.5 ~ 3.5
-
     protected float cooltime_timer = 0;
 
     protected Vector3 targetposition;
 
     virtual protected void Awake()
     {
-
-        PosX = transform.position.x;
-        PosY = transform.position.y;
         Turn();
     }
 

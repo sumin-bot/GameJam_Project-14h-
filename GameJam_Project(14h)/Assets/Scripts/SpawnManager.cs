@@ -21,13 +21,12 @@ public class SpawnManager : MonoBehaviour
     }
     #endregion
 
+    public Player player;
+
     public GameObject enemy;
     public GameObject enemy2;
     public GameObject enemy3;
     public GameObject enemy4;
-
-    [SerializeField]
-    Vector3[] spawnpoint;
 
     bool flag = true;
     bool isSpawn = false;
@@ -58,26 +57,28 @@ public class SpawnManager : MonoBehaviour
     // Àû ¼ÒÈ¯
     void SpawnEnemy()
     {
+        Vector3 spawnPosition = GameManager.Instance.FindRandomPosition();
+
         if (turn % 30 == 0 && !isSpawn && spawn3 < 2)
         {
-            Instantiate(enemy3, spawnpoint[Random.Range(1, spawnpoint.Length - 1)] + Vector3.up, Quaternion.Euler(Vector3.up));
+            Instantiate(enemy3, spawnPosition + Vector3.up, Quaternion.Euler(Vector3.up));
             isSpawn = true;
             spawn1++;
         }
         else if (turn % 15 == 0 && !isSpawn && spawn4 < 3)
         {
-            Instantiate(enemy4, spawnpoint[Random.Range(0, spawnpoint.Length)], Quaternion.Euler(Vector3.up));
+            Instantiate(enemy4, spawnPosition, Quaternion.Euler(Vector3.up));
             isSpawn = true;
             spawn4++;
         }
         else if (turn % 10 == 0 && !isSpawn && spawn2 < 5)
         {
-            Instantiate(enemy2, spawnpoint[Random.Range(0, spawnpoint.Length)], Quaternion.Euler(Vector3.up));
+            Instantiate(enemy2, spawnPosition, Quaternion.Euler(Vector3.up));
             isSpawn = true;
         }
         else if ((turn % 5 == 0 || turn == 1) && !isSpawn && spawn1 < 7)
         {
-            Instantiate(enemy, spawnpoint[Random.Range(0, spawnpoint.Length)], Quaternion.Euler(Vector3.up));
+            Instantiate(enemy, spawnPosition, Quaternion.Euler(Vector3.up));
             isSpawn = true;
         }
     }
