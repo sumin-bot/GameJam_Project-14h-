@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
+        if (horizontal != 0) vertical = 0;
+
         if (isTurn && !Player.isPlayerMove)
         {
             if (horizontal == 1 && player.PosX < 3.5f)
