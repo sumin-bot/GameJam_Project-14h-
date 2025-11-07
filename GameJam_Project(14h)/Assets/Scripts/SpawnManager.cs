@@ -38,6 +38,8 @@ public class SpawnManager : MonoBehaviour
     int spawn3 = 0;
     int spawn4 = 0;
 
+    public int enemyNumber = 0;
+
     void Update()
     {
         if (GameManager.Instance.isTurn && flag)
@@ -64,22 +66,26 @@ public class SpawnManager : MonoBehaviour
             Instantiate(enemy3, spawnPosition + Vector3.up, Quaternion.Euler(Vector3.up));
             isSpawn = true;
             spawn1++;
+            enemyNumber++;
         }
         else if (turn % 15 == 0 && !isSpawn && spawn4 < 5)
         {
             Instantiate(enemy4, spawnPosition, Quaternion.Euler(Vector3.up));
             isSpawn = true;
             spawn4++;
+            enemyNumber++;
         }
         else if (turn % 10 == 0 && !isSpawn && spawn2 < 7)
         {
             Instantiate(enemy2, spawnPosition, Quaternion.Euler(Vector3.up));
             isSpawn = true;
+            enemyNumber++;
         }
         else if ((turn % 3 == 0 || turn == 1) && !isSpawn && spawn1 < 10)
         {
             Instantiate(enemy, spawnPosition, Quaternion.Euler(Vector3.up));
             isSpawn = true;
+            enemyNumber++;
         }
     }
 
@@ -95,5 +101,7 @@ public class SpawnManager : MonoBehaviour
         spawn2 = 0;
         spawn3 = 0;
         spawn4 = 0;
+
+        enemyNumber = 0;
     }
 }

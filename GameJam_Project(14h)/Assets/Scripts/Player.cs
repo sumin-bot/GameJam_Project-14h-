@@ -65,6 +65,7 @@ public class Player : MonoBehaviour
         {
             hp--;
             Destroy(collision.gameObject);
+            SpawnManager.Instance.enemyNumber--;
         }
     }
 }
