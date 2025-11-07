@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour
         cooltime_timer = 0;
 
         player.hp = 3;
-        player.transform.position = new Vector3(0.5f, 0.5f, 0); 
+        player.transform.position = FindRandomPosition(); 
 
         isGame = true;
         isTurn = true;
