@@ -24,6 +24,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject enemy;
     public GameObject enemy2;
     public GameObject enemy3;
+    public GameObject enemy4;
 
     [SerializeField]
     Vector3[] spawnpoint;
@@ -36,6 +37,7 @@ public class SpawnManager : MonoBehaviour
     int spawn1 = 0;
     int spawn2 = 0;
     int spawn3 = 0;
+    int spawn4 = 0;
 
     void Update()
     {
@@ -61,12 +63,18 @@ public class SpawnManager : MonoBehaviour
             isSpawn = true;
             spawn1++;
         }
+        else if (turn % 15 == 0 && !isSpawn && spawn4 < 3)
+        {
+            Instantiate(enemy4, spawnpoint[Random.Range(0, spawnpoint.Length)], Quaternion.Euler(Vector3.up));
+            isSpawn = true;
+            spawn4++;
+        }
         else if (turn % 10 == 0 && !isSpawn && spawn2 < 5)
         {
             Instantiate(enemy2, spawnpoint[Random.Range(0, spawnpoint.Length)], Quaternion.Euler(Vector3.up));
             isSpawn = true;
         }
-        else if ((turn % 5 == 0 || turn == 1) && !isSpawn && spawn1 < 10)
+        else if ((turn % 5 == 0 || turn == 1) && !isSpawn && spawn1 < 7)
         {
             Instantiate(enemy, spawnpoint[Random.Range(0, spawnpoint.Length)], Quaternion.Euler(Vector3.up));
             isSpawn = true;
