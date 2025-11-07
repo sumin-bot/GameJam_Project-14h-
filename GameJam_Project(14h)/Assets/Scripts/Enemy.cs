@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            if (!GameManager.isTurn) isEnemyMove = true; // isTurn 비활성화가 Player.cs에서 적용되므로 코드 실행 전 비활성화 방지
+            if (!GameManager.isTurn) isEnemyMove = true;
         }
     }
 

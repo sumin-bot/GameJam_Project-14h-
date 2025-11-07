@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     float horizontal;
     float vertical;
 
+    float cooltime_timer = 0;
+
     public static bool isTurn = true;
 
     void Update()
@@ -20,7 +22,7 @@ public class GameManager : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        if (isTurn)
+        if (isTurn && !Player.isPlayerMove)
         {
             if (horizontal == 1 && player.PosX < 3.5f)
             {
@@ -46,6 +48,16 @@ public class GameManager : MonoBehaviour
                 player.PosY--;
                 player.MoveStart(Vector3.down);
                 isTurn = false;
+            }
+        }
+        else
+        {
+            cooltime_timer += Time.deltaTime;
+
+            if (cooltime_timer >= 0.75f)
+            {
+                isTurn = true;
+                cooltime_timer = 0;
             }
         }
     }

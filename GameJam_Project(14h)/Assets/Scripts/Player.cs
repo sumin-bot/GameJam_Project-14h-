@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static bool isPlayerMove = false;
+    
+    
     public float PosX; // -3.5 ~ 3.5
     public float PosY; // -3.5 ~ 3.5
 
@@ -17,7 +20,23 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.isTurn) Move();
+        if (isPlayerMove)
+        {
+            Move();
+
+            cooltime_timer += Time.deltaTime;
+
+            if (cooltime_timer >= 0.75f)
+            {
+                isPlayerMove = false;
+                cooltime_timer = 0;
+                transform.position = new Vector3(PosX, PosY, 0);
+            }
+        }
+        else
+        {
+            if (!GameManager.isTurn) isPlayerMove = true;
+        }
     }
 
     // 플레이어 움직임 시작 (targetposition 초기화)
@@ -30,14 +49,5 @@ public class Player : MonoBehaviour
     private void Move()
     {
         transform.position = Vector3.Lerp(transform.position, targetposition, Time.deltaTime * 10f);
-
-        cooltime_timer += Time.deltaTime;
-
-        if (cooltime_timer >= 0.75f)
-        {
-            GameManager.isTurn = true;
-            cooltime_timer = 0;
-            transform.position = new Vector3(PosX, PosY, 0);
-        }
     }
 }
