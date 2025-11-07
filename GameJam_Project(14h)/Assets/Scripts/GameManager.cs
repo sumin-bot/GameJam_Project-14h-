@@ -119,4 +119,17 @@ public class GameManager : MonoBehaviour
             isGame = false;
         }
     }
+
+    // √ ±‚»≠
+    public void Initialize()
+    {
+        ClearPosition();
+        cooltime_timer = 0;
+
+        player.hp = 3;
+        player.transform.position = new Vector3(0.5f, 0.5f, 0); 
+
+        isGame = true;
+        isTurn = true;
+    }
 }

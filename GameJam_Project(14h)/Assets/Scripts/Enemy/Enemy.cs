@@ -50,6 +50,10 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     // 적 움직임

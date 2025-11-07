@@ -55,6 +55,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    // 적 소환
     void SpawnEnemy()
     {
         if (turn % 30 == 0 && !isSpawn && spawn3 < 2)
@@ -79,5 +80,19 @@ public class SpawnManager : MonoBehaviour
             Instantiate(enemy, spawnpoint[Random.Range(0, spawnpoint.Length)], Quaternion.Euler(Vector3.up));
             isSpawn = true;
         }
+    }
+
+    // 초기화
+    public void Initialize()
+    {
+        flag = true;
+        isSpawn = false;
+
+        turn = 0;
+
+        spawn1 = 0;
+        spawn2 = 0;
+        spawn3 = 0;
+        spawn4 = 0;
     }
 }
