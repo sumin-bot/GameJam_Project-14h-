@@ -1127,6 +1127,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1314435263 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7044129434665628219, guid: f3e116ed61cbfa943bf60f2b3ca9ef7a, type: 3}
+  m_PrefabInstance: {fileID: 1221031977789962496}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1424068854
 GameObject:
   m_ObjectHideFlags: 0
@@ -1394,6 +1399,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 197393a5ceebea747b184a7db108a1c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 1424068855}
+  enemy: {fileID: 1314435263}
+  spawnpoint:
+  - {x: -3.5, y: -3.5, z: 0}
+  - {x: -2.5, y: -3.5, z: 0}
+  - {x: -1.5, y: -3.5, z: 0}
+  - {x: -0.5, y: -3.5, z: 0}
+  - {x: 0.5, y: -3.5, z: 0}
+  - {x: 1.5, y: -3.5, z: 0}
+  - {x: 2.5, y: -3.5, z: 0}
+  - {x: 3.5, y: -3.5, z: 0}
 --- !u!1 &1973533026
 GameObject:
   m_ObjectHideFlags: 0
@@ -1447,18 +1463,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1588738012178380571, guid: f3e116ed61cbfa943bf60f2b3ca9ef7a, type: 3}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1588738012178380571, guid: f3e116ed61cbfa943bf60f2b3ca9ef7a, type: 3}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1588738012178380571, guid: f3e116ed61cbfa943bf60f2b3ca9ef7a, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6782431035636737002, guid: f3e116ed61cbfa943bf60f2b3ca9ef7a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.5
