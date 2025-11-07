@@ -38,7 +38,6 @@ public class Enemy : MonoBehaviour
             {
                 isEnemyMove = false;
                 transform.position = targetposition;
-                PosCheck();
                 Turn();
                 cooltime_timer = 0;
             }
@@ -55,41 +54,49 @@ public class Enemy : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, targetposition, Time.deltaTime * 10f);
     }
 
-    // Àû À§Ä¡ È®ÀÎ (¸Ê ÀÌÅ» ½Ã ÆÄ±« (¸Ê ÀÌÅ» ¹æÁö Æ÷±â..))
-    void PosCheck()
-    {
-        PosX = transform.position.x;
-        PosY = transform.position.y;
-
-        if (PosX > 3.5f || PosX < -3.5f || PosY > 3.5f || PosY < -3.5f)
-            Destroy(gameObject);
-    }
-
     // Àû È¸Àü
     void Turn()
     {
-        direction = (Direction)Random.Range(0, 4);
+        bool found = false;
 
-        switch (direction)
+        while (!found)
         {
-            case Direction.up:
-                transform.rotation = Quaternion.Euler(0, 0, 0);
+            direction = (Direction)Random.Range(0, 4);
+            Vector3 nextPos = transform.position;
+
+            switch (direction)
+            {
+                case Direction.up:
+                    nextPos += Vector3.up;
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
                     break;
 
-            case Direction.down:
-                transform.rotation = Quaternion.Euler(0, 0, 180);
-                break;
+                case Direction.down:
+                    nextPos += Vector3.down;
+                    transform.rotation = Quaternion.Euler(0, 0, 180);
+                    break;
 
-            case Direction.right:
-                transform.rotation = Quaternion.Euler(0, 0, 270);
-                break;
+                case Direction.right:
+                    nextPos += Vector3.right;
+                    transform.rotation = Quaternion.Euler(0, 0, 270);
+                    break;
 
-            case Direction.left:
-                transform.rotation = Quaternion.Euler(0, 0, 90);
-                break;
+                case Direction.left:
+                    nextPos += Vector3.left;
+                    transform.rotation = Quaternion.Euler(0, 0, 90);
+                    break;
+            }
+
+            if (nextPos.x > 3.5f || nextPos.x < -3.5f || nextPos.y > 3.5f || nextPos.y < -3.5f)
+            {
+                targetposition = transform.position;
+            }
+            else
+            {
+                targetposition = nextPos;
+                found = true;
+            }
+
         }
-
-        // targetposition ÃÊ±âÈ­
-        targetposition = transform.position + transform.up;
     }
 }

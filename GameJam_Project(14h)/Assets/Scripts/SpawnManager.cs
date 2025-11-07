@@ -10,8 +10,6 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     Vector3[] spawnpoint;
 
-
-
     bool flag = true;
     bool isSpawn = false;
 
