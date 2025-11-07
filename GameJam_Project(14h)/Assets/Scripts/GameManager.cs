@@ -36,12 +36,16 @@ public class GameManager : MonoBehaviour
 
     float cooltime_timer = 0;
 
+    public bool isGame = true;
     public bool isTurn = true;
 
     void Update()
     {
-        MoveTrigger();
-        CheckDeath();
+        if (isGame)
+        {
+            MoveTrigger();
+            CheckDeath();
+        }
     }
 
     // 플레이어 움직임 조작
@@ -97,7 +101,7 @@ public class GameManager : MonoBehaviour
     {
         if (player.hp <= 0)
         {
-
+            isGame = false;
         }
     }
 }

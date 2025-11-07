@@ -42,17 +42,20 @@ public class SpawnManager : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.isTurn && flag)
+        if (GameManager.Instance.isGame)
         {
-            turn++;
-            SpawnEnemy();
-            flag = false;
-            isSpawn = false;
-        }
+            if (GameManager.Instance.isTurn && flag)
+            {
+                turn++;
+                SpawnEnemy();
+                flag = false;
+                isSpawn = false;
+            }
 
-        if (!GameManager.Instance.isTurn)
-        {
-            flag = true;
+            if (!GameManager.Instance.isTurn)
+            {
+                flag = true;
+            }
         }
     }
 

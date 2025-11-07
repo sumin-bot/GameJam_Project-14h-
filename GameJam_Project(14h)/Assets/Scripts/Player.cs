@@ -22,22 +22,25 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (isPlayerMove)
+        if (GameManager.Instance.isGame)
         {
-            Move();
-
-            cooltime_timer += Time.deltaTime;
-
-            if (cooltime_timer >= 0.75f)
+            if (isPlayerMove)
             {
-                isPlayerMove = false;
-                cooltime_timer = 0;
-                transform.position = new Vector3(PosX, PosY, 0);
+                Move();
+
+                cooltime_timer += Time.deltaTime;
+
+                if (cooltime_timer >= 0.75f)
+                {
+                    isPlayerMove = false;
+                    cooltime_timer = 0;
+                    transform.position = new Vector3(PosX, PosY, 0);
+                }
             }
-        }
-        else
-        {
-            if (!GameManager.isTurn) isPlayerMove = true;
+            else
+            {
+                if (!GameManager.Instance.isTurn) isPlayerMove = true;
+            }
         }
     }
 

@@ -28,23 +28,26 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (isEnemyMove)
+        if (GameManager.Instance.isGame)
         {
-            Move();
-
-            cooltime_timer += Time.deltaTime;
-
-            if (cooltime_timer >= 0.75f)
+            if (isEnemyMove)
             {
-                isEnemyMove = false;
-                transform.position = targetposition;
-                Turn();
-                cooltime_timer = 0;
+                Move();
+
+                cooltime_timer += Time.deltaTime;
+
+                if (cooltime_timer >= 0.75f)
+                {
+                    isEnemyMove = false;
+                    transform.position = targetposition;
+                    Turn();
+                    cooltime_timer = 0;
+                }
             }
-        }
-        else
-        {
-            if (!GameManager.Instance.isTurn) isEnemyMove = true;
+            else
+            {
+                if (!GameManager.Instance.isTurn) isEnemyMove = true;
+            }
         }
     }
 
