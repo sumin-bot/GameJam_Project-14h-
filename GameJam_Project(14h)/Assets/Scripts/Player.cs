@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
 
     float cooltime_timer = 0;
 
-    Vector3 targetposition;
+    public Vector3 targetposition;
 
     void Awake()
     {
