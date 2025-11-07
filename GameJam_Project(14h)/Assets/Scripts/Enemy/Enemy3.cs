@@ -17,7 +17,7 @@ public class Enemy3 : Enemy
         bool found = false;
 
         // 갈려는 칸이 비어있는지 확인
-        while (!found && tryCount < 10)
+        while (!found && tryCount < 20)
         {
             direction = (Direction)Random.Range(0, 4);
             Vector3 nextPos = transform.position;
@@ -49,37 +49,10 @@ public class Enemy3 : Enemy
             if (nextPos.x > 2.5f || nextPos.x < -2.5f || nextPos.y > 2.5f || nextPos.y < -2.5f)
             {
                 tryCount++;
-                continue;
-            }
-
-            // 갈려는 칸에 적이 있는 경우 확인 (현재 작동 안함)
-            bool isOccupied = false;
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-            foreach (GameObject e in enemies)
-            {
-                if (e == null || e == this.gameObject) continue;
-
-                if (Vector3.Distance(e.transform.position, nextPos) < 0.1f)
-                {
-                    isOccupied = true;
-                    break;
-                }
-            }
-
-            if (!isOccupied)
-            {
-                targetposition = nextPos;
-                found = true;
             }
             else
             {
-                tryCount++;
-            }
-
-            if (!found)
-            {
-                targetposition = transform.position;
+                targetposition = nextPos;
             }
         }
     }
